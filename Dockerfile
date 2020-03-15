@@ -6,7 +6,7 @@ RUN apt-get update && \
  apt-get -y install default-jdk
 
 # Install apache and write hello world message
-RUN echo 'Hello World!' > /var/www/html/index.html
+RUN echo 'Hello World! change 11' > /var/www/html/index.html
 
 # Configure apache
 RUN echo '. /etc/apache2/envvars' > /root/run_apache.sh && \
