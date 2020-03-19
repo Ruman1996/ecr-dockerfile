@@ -1,0 +1,6 @@
+[
+  {
+    "name": "moterum-test-container",
+    "imageUri": "639380775516.dkr.ecr.us-east-1.amazonaws.com/ruman-test:latest"
+  }
+]
