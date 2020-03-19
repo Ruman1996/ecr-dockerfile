@@ -1,0 +1,10 @@
+version: 1.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "arn:aws:ecs:us-east-1:639380775516:task-definition/moterum-test-task:2"
+        LoadBalancerInfo:
+          ContainerName: "moterum-test-container"
+          ContainerPort: "80"
+        PlatformVersion: "LATEST"
