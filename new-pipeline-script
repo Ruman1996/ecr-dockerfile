@@ -1,0 +1,24 @@
+node {
+  stage 'Checkout'
+  git 'https://github.com/Ruman1996/ecr-dockerfile.git'
+ 
+  stage 'Docker build and push'
+  sh label: '', script: '''DOCKER_REPO=`aws ecr describe-repositories --repository-names ruman-test | grep repositoryUri | cut -d "\\"" -f 4`
+  docker build -t ${DOCKER_REPO}:r_$BUILD_NUMBER .
+  echo "docker build success"
+  docker push ${DOCKER_REPO}:r_$BUILD_NUMBER'''
+  echo 'docker push success'
+  stage 'update taskdefinition with imageID and Tag'
+  sh label: '', script: '''dockerRepo=`aws ecr describe-repositories --repository-name ruman-test --region us-east-1 | grep repositoryUri | cut -d "\\"" -f 4`
+  dockerTag=`aws ecr list-images --repository-name ruman-test --region us-east-1 | grep imageTag | head -n 1 | cut -d "\\"" -f 4`
+  sed -e "s;DOCKER_IMAGE_NAME;${dockerRepo}:${dockerTag};g" ${WORKSPACE}/template.json > taskDefinition.json
+  echo "updated task definition"'''
+  
+  stage 'Pushing task definition to revision'
+  sh label: '', script: '''aws ecs register-task-definition --family moterum-test-task --cli-input-json file://taskDefinition.json --region us-east-1
+  echo "registering the task definition"
+  revision=`aws ecs describe-task-definition --task-definition moterum-test-task --region us-east-1 | grep “revision” | tr -s " " | cut -d " " -f 3`
+  echo $revision 
+  echo "value of revision"'''
+  
+}
