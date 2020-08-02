@@ -2,6 +2,7 @@
     "family": "moterum-test-task",
     "placementConstraints": [],
     "volumes": [],
+    "networkMode": "awsvpc",
     "requiresCompatibilities": [
         "FARGATE"
     ],
@@ -11,7 +12,6 @@
             "name": "moterum-test-task",
             "mountPoints": [],
             "image": "DOCKER_IMAGE_NAME",
-            "networkMode": "awsvpc",
             "essential": true,
             "portMappings": [
                 {
