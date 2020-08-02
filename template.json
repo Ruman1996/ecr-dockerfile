@@ -3,7 +3,7 @@
     "placementConstraints": [],
     "volumes": [],
     "requiresCompatibilities": [
-        "EC2"
+        "FARGATE"
     ],
     "containerDefinitions": [
         {
