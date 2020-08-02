@@ -3,6 +3,7 @@
     "placementConstraints": [],
     "volumes": [],
     "networkMode": "awsvpc",
+    "cpu": "256"
     "requiresCompatibilities": [
         "FARGATE"
     ],
@@ -23,7 +24,6 @@
             ],
            
             "memory": 1024,
-            "cpu": 256,
             "volumesFrom": []
         }
     ]
