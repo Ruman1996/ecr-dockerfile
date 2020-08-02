@@ -26,4 +26,6 @@ FROM ubuntu:18.04
 RUN apt-get update
 RUN apt-get install -y nginx
 EXPOSE 80/tcp
+RUN touch /var/www/html/ruman.html
+RUN echo 'Hello World! change pipeline' > /var/www/html/ruman.html
 CMD ["nginx", "-g daemon off;"]
