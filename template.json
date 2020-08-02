@@ -3,6 +3,7 @@
     "placementConstraints": [],
     "volumes": [],
     "networkMode": "awsvpc",
+    "executionRoleArn": "arn:aws:iam::639380775516:role/ecsTaskExecutionRole",
     "cpu": "256",
     "memory": "512",
     "requiresCompatibilities": [
